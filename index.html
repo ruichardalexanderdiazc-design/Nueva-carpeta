@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YourManga</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="YourManga - Plataforma web para leer cómics, mangas y manhwas. Autenticación con Firebase, panel administrativo y lector optimizado." />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand" id="brandLogo">YourManga</div>
+      <div class="top-actions">
+        <button class="nav-btn" data-page="home">Inicio</button>
+        <button class="nav-btn" data-page="browse">Cómics y Manhwas</button>
+        <button class="nav-btn" data-page="library">Biblioteca</button>
+        <button class="nav-btn nav-admin" data-page="admin" hidden>Estudio</button>
+      </div>
+      <div class="user-panel" id="userPanel">
+        <span id="userName"></span>
+        <button id="signOutBtn" class="primary ghost" hidden>Salir</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="page active" id="page-login">
+        <div class="auth-card">
+          <h1>Bienvenido a YourManga</h1>
+          <p>Lee cómics, manhwas, mangas y publicaciones oficiales desde la web.</p>
+          <div class="auth-actions">
+            <button id="signInGoogle" class="primary">Iniciar con Google</button>
+            <button id="showEmailAuth" class="secondary">Iniciar con correo</button>
+          </div>
+          <div id="emailAuth" class="email-auth hidden">
+            <input type="email" id="emailInput" placeholder="Correo electrónico" />
+            <input type="password" id="passwordInput" placeholder="Contraseña" />
+            <div class="auth-forms">
+              <button id="signInEmail" class="primary">Iniciar sesión</button>
+              <button id="signUpEmail" class="secondary">Crear cuenta</button>
+            </div>
+          </div>
+          <div class="auth-info">
+            <p>Accede como usuario o administrador. Solo el administrador puede publicar contenidos.</p>
+            <p class="note">Administrador: richardalexanderdiaz0@gmail.com</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-home">
+        <div class="page-header">
+          <h2>Inicio</h2>
+          <div class="home-status" id="homeStatus"></div>
+        </div>
+        <div class="home-section" id="section-recents"></div>
+        <div class="home-section" id="section-upcoming"></div>
+        <div class="home-section" id="section-daily"></div>
+        <div class="home-section" id="section-trending"></div>
+        <div class="home-section" id="section-catalog"></div>
+        <div class="home-section" id="section-finished"></div>
+        <div class="home-section" id="section-finished-all"></div>
+      </section>
+
+      <section class="page" id="page-browse">
+        <div class="page-header">
+          <button class="back-btn" data-page="home">← Volver</button>
+          <h2>Cómics y Manhwas</h2>
+        </div>
+        <div class="browse-toolbar">
+          <input id="searchInput" type="search" placeholder="Buscar por título o autor" />
+          <select id="filterType">
+            <option value="all">Todos los tipos</option>
+            <option value="MANHWA">Manhwa</option>
+            <option value="MANGA">Manga</option>
+            <option value="CÓMIC">Cómic</option>
+          </select>
+          <select id="filterStatus">
+            <option value="all">Todos los estados</option>
+            <option value="EN EMISIÓN">En emisión</option>
+            <option value="FINALIZADO">Finalizado</option>
+            <option value="PRÓXIMAMENTE">Próximamente</option>
+          </select>
+        </div>
+        <div class="browse-filters" id="tagFilters"></div>
+        <div class="cards-grid" id="browseGrid"></div>
+      </section>
+
+      <section class="page" id="page-detail">
+        <div class="detail-view">
+          <button class="back-btn" data-page="browse">← Volver</button>
+          <div class="detail-top" id="detailTop"></div>
+          <div class="detail-meta" id="detailMeta"></div>
+          <div class="detail-actions">
+            <button id="shareBtn" class="secondary">Compartir</button>
+            <button id="infoBtn" class="secondary">Info</button>
+            <button id="reportBtn" class="secondary">Reportar</button>
+          </div>
+          <div class="detail-synopsis" id="detailSynopsis"></div>
+          <div class="detail-stats" id="detailStats"></div>
+          <div class="episode-preview" id="episodePreview"></div>
+          <div class="more-episodes" id="moreEpisodes"></div>
+          <div class="detail-comments" id="detailComments"></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-reader">
+        <div class="reader-shell">
+          <div class="reader-top" id="readerTop"></div>
+          <div class="reader-screen" id="readerScreen">
+            <div class="reader-overlay hidden" id="readerOverlay">
+              <button id="readerInfoBtn" class="icon-btn">INFO</button>
+              <button id="readerShareBtn" class="icon-btn">COMPARTIR</button>
+            </div>
+            <div class="reader-content" id="readerContent"></div>
+          </div>
+          <div class="reader-bottom hidden" id="readerBottom">
+            <button id="prevChapterBtn" class="nav-btn">⬅️</button>
+            <button id="navEpisodesBtn" class="nav-btn">≡</button>
+            <button id="nextChapterBtn" class="nav-btn">➡️</button>
+          </div>
+          <div class="reader-chapters hidden" id="readerChapters"></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-library">
+        <div class="page-header">
+          <button class="back-btn" data-page="home">← Volver</button>
+          <h2>Mi Biblioteca</h2>
+        </div>
+        <div class="cards-grid" id="libraryGrid"></div>
+      </section>
+
+      <section class="page" id="page-admin">
+        <div class="page-header">
+          <button class="back-btn" data-page="home">← Volver</button>
+          <h2>Estudio YourManga</h2>
+        </div>
+        <div class="admin-panel" id="adminPanel"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <div class="modal-card" id="modalCard"></div>
+  </div>
+
+  <template id="cardTemplate">
+    <article class="card">
+      <img class="card-cover" alt="Portada" />
+      <div class="card-body">
+        <div class="card-tag"></div>
+        <h3 class="card-title"></h3>
+        <p class="card-subtitle"></p>
+      </div>
+    </article>
+  </template>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
