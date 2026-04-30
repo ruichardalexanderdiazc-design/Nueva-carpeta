@@ -26,36 +26,60 @@
     <main>
       <section class="page active" id="page-login">
         <div class="auth-card auth-hero">
-          <div class="hero-badge">Tu app de cómics</div>
-          <div class="hero-copy">
-            <h1>Bienvenida a YourManga</h1>
-            <p>Entra con tu cuenta Google o correo y comienza a leer cómics, mangas y manhwas en un estilo rosado y muy profesional.</p>
+          <div class="hero-header">
+            <img src="logo.svg" alt="YourManga" class="hero-logo" />
+            <div>
+              <h1>Bienvenido/a a YOURMANGA</h1>
+              <p>Lee cómics, manhwas y mangas gratis y sin anuncios.</p>
+            </div>
           </div>
-          <div class="hero-illustration"></div>
+          <div class="hero-copy">
+            <p>Disfruta de tu colección favorita con un diseño rosa y moderno. Accede con Google o usa tu correo electrónico y contraseña.</p>
+          </div>
           <div class="auth-actions">
             <button type="button" id="signInGoogle" class="primary google-btn">
               <span class="button-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 11.1H12v2.8h5.35c-.23 1.2-.94 2.21-1.98 2.9v2.4h3.2c1.86-1.71 2.95-4.25 2.95-7.1 0-.57-.05-1.12-.16-1.65z"/><path fill="#34A853" d="M12 22c2.7 0 4.97-.9 6.63-2.45l-3.2-2.4c-.88.6-2.02.95-3.43.95-2.64 0-4.87-1.78-5.67-4.14H3.1v2.6C4.75 19.82 8.12 22 12 22z"/><path fill="#FBBC05" d="M6.33 13.96c-.2-.6-.32-1.25-.32-1.96s.12-1.36.32-1.96V7.44H3.10C2.36 8.80 1.90 10.35 1.90 12s.46 3.20 1.20 4.56l3.23-2.60z"/><path fill="#EA4335" d="M12 5.5c1.47 0 2.80.5 3.84 1.47l2.87-2.85C16.94 2.48 14.70 1.50 12 1.50 8.12 1.50 4.75 3.68 3.10 6.44l3.23 2.60C7.13 7.28 9.36 5.50 12 5.50z"/></svg></span>
-              Iniciar con Google
+              Inicia con Google
             </button>
           </div>
-          <div class="auth-forms">
-            <input id="emailInput" type="email" placeholder="Correo electrónico" />
-            <input id="passwordInput" type="password" placeholder="Contraseña" />
+          <div class="auth-forms auth-panel">
+            <div class="input-row">
+              <label>
+                <span class="field-label">Correo electrónico</span>
+                <input id="emailInput" type="email" placeholder="nombre@dominio.com" />
+              </label>
+            </div>
+            <div class="input-row">
+              <label>
+                <span class="field-label">Contraseña</span>
+                <input id="passwordInput" type="password" placeholder="Contraseña" />
+              </label>
+            </div>
             <div class="auth-actions email-actions">
-              <button type="button" id="signInEmail" class="primary">Iniciar con correo</button>
-              <button type="button" id="registerEmail" class="secondary">Crear cuenta</button>
+              <button type="button" id="signInEmail" class="primary">Iniciar sesión</button>
+              <button type="button" id="registerEmail" class="secondary">Registrarse</button>
             </div>
           </div>
           <label class="form-checkbox">
             <input type="checkbox" id="termsAccept" />
-            <span>Acepto los <a href="#" id="openTerms">Términos</a> y la <a href="#" id="openPrivacy">Políticas de privacidad</a></span>
+            <span>Acepto los <button type="button" class="link-button" id="openTerms">Términos</button> y la <button type="button" class="link-button" id="openPrivacy">Políticas de privacidad</button>.</span>
           </label>
           <div class="auth-info">
-            <p>Usa tu cuenta de Google o correo para entrar. Todo está conectado a tu sesión, sin simulaciones.</p>
+            <p>Al autenticarse, serás llevado automáticamente a la página principal de YourManga.</p>
           </div>
         </div>
       </section>
     </main>
+  </div>
+
+  <div id="modalOverlay" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="modalTitle"></h2>
+        <button type="button" id="closeModal" class="modal-close" aria-label="Cerrar">✕</button>
+      </div>
+      <div id="modalContent" class="modal-content"></div>
+    </div>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>

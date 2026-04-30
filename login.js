@@ -72,17 +72,54 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalContent = document.getElementById('modalContent');
+  const closeModal = document.getElementById('closeModal');
+
+  const openTextModal = (title, contentHtml) => {
+    if (!modalOverlay || !modalTitle || !modalContent) return;
+    modalTitle.textContent = title;
+    modalContent.innerHTML = contentHtml;
+    modalOverlay.classList.remove('hidden');
+  };
+
+  const closeTextModal = () => {
+    if (!modalOverlay) return;
+    modalOverlay.classList.add('hidden');
+    modalTitle.textContent = '';
+    modalContent.innerHTML = '';
+  };
+
+  if (closeModal) {
+    closeModal.onclick = closeTextModal;
+  }
+
+  if (modalOverlay) {
+    modalOverlay.onclick = (event) => {
+      if (event.target === modalOverlay) {
+        closeTextModal();
+      }
+    };
+  }
+
   if (openTerms) {
-    openTerms.onclick = (event) => {
-      event.preventDefault();
-      window.location.href = 'terms.html';
+    openTerms.onclick = () => {
+      openTextModal('Términos de uso', `
+        <p>Bienvenido/a a YOURMANGA. Esta aplicación te permite acceder a cómics, mangas y manhwas sin anuncios.</p>
+        <p>Al registrarte o iniciar sesión aceptas que tu correo y contraseña sean utilizados para autenticarte con Firebase. Tu información no se comparte con terceros fuera de los servicios necesarios para el funcionamiento de la app.</p>
+        <p>Queda prohibido utilizar la aplicación para publicar contenido ilegal, ofensivo o que viole derechos de autor. El acceso puede suspenderse si se detecta abuso.</p>
+      `);
     };
   }
 
   if (openPrivacy) {
-    openPrivacy.onclick = (event) => {
-      event.preventDefault();
-      window.location.href = 'privacy.html';
+    openPrivacy.onclick = () => {
+      openTextModal('Política de privacidad', `
+        <p>YOURMANGA respeta tu privacidad. Tus datos de autenticación son gestionados por Firebase Auth y se utilizan solo para iniciar sesión y mantener tu sesión activa.</p>
+        <p>No vendemos ni compartimos tu información personal. Solo almacenamos lo mínimo necesario para el funcionamiento de la app y tu experiencia de lectura.</p>
+        <p>Si deseas eliminar tu cuenta, contacta al administrador o utiliza las herramientas de Firebase asociadas a tu cuenta.</p>
+      `);
     };
   }
 });
