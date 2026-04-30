@@ -26,7 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
     signInGoogle.onclick = () => {
       if (!requireTerms()) return;
       const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider).catch((err) => alert(err.message));
+      auth.signInWithPopup(provider).catch((err) => {
+        if (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user') {
+          auth.signInWithRedirect(provider);
+          return;
+        }
+        alert(err.message);
+      });
     };
   }
 

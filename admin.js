@@ -48,6 +48,20 @@ function renderAdmin() {
     chip.onclick = () => chip.classList.toggle('active');
   });
 
+  const coverFileInput = document.getElementById('adminCoverFile');
+  if (coverFileInput) {
+    coverFileInput.onchange = (event) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        state.adminDraft.cover = reader.result;
+        renderAdmin();
+      };
+      reader.readAsDataURL(file);
+    };
+  }
+
   document.getElementById('adminBack').onclick = () => {
     if (state.adminStep > 1) {
       state.adminStep -= 1;
@@ -81,7 +95,10 @@ function renderAdminStep(step) {
         <label>Sinopsis</label>
         <textarea id="adminSynopsis" rows="4" placeholder="Describe la historia">${state.adminDraft.synopsis}</textarea>
         <label>Portada</label>
-        <input id="adminCover" value="${state.adminDraft.cover}" placeholder="https://..." />
+        <input id="adminCover" value="${state.adminDraft.cover && !state.adminDraft.cover.startsWith('data:') ? state.adminDraft.cover : ''}" placeholder="URL de la portada (opcional)" />
+        <label>Seleccionar imagen desde tu galería</label>
+        <input id="adminCoverFile" type="file" accept="image/*" />
+        ${state.adminDraft.cover ? `<div class="admin-cover-preview"><img src="${state.adminDraft.cover}" alt="Previsualización de portada" /></div>` : ''}
         <label>Estado</label>
         <select id="adminStatus">
           <option value="FINALIZADO" ${state.adminDraft.status === 'FINALIZADO' ? 'selected' : ''}>FINALIZADO</option>
@@ -168,8 +185,8 @@ function saveAdminStep(step) {
     if (dateInput && timeInput) {
       state.adminDraft.scheduleAt = `${dateInput}T${timeInput}:00Z`;
     }
-    if (!state.adminDraft.title || !state.adminDraft.synopsis || !state.adminDraft.cover) {
-      alert('Completa título, sinopsis y portada.');
+    if (!state.adminDraft.title || !state.adminDraft.synopsis) {
+      alert('Completa título y sinopsis. La portada es opcional.');
       return false;
     }
     return true;

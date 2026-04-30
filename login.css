@@ -6,7 +6,8 @@
 }
 
 .auth-hero {
-  background: linear-gradient(180deg, rgba(255, 192, 231, 0.9), rgba(255, 237, 245, 0.92));
+  background: linear-gradient(180deg, #ffe1f1 0%, #ffbddf 35%, #ffffff 100%);
+  box-shadow: 0 30px 80px rgba(255, 161, 201, 0.14);
 }
 
 .hero-copy h1 {
