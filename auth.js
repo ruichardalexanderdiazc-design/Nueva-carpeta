@@ -23,6 +23,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
 });
 
 window.addEventListener('load', () => {
-  registerServiceWorker();
+  // Se evita el registro del service worker para que no sirva JavaScript viejo en el login.
+  // registerServiceWorker();
   highlightCurrentNav();
 });
