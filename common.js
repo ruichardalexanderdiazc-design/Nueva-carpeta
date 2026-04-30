@@ -207,7 +207,7 @@ function openModal(content, options = {}) {
   }
 }
 
-async async function openWorkDetailModal(work) {
+async function openWorkDetailModal(work) {
   if (!work) return;
   let detailedWork = work;
   if (!Array.isArray(work.episodes) || !work.episodes.length || !Array.isArray(work.comments)) {

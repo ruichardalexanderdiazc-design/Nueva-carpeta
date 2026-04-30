@@ -32,9 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (signInGoogle) {
     signInGoogle.onclick = () => {
+      console.log('Google login click');
       if (!requireTerms()) return;
       const provider = new firebase.auth.GoogleAuthProvider();
       auth.signInWithPopup(provider).catch((err) => {
+        console.error('Google auth error', err);
         if (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user') {
           auth.signInWithRedirect(provider);
           return;
