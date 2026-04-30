@@ -9,11 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.warn('No se pudo establecer persistencia local:', err.message);
   });
 
-  auth.getRedirectResult().catch((err) => {
-    console.warn('Error en getRedirectResult:', err.message);
-  });
-
-  const signInGoogle = document.getElementById('signInGoogle');
   const signInEmail = document.getElementById('signInEmail');
   const registerEmail = document.getElementById('registerEmail');
   const emailInput = document.getElementById('emailInput');
@@ -29,48 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     return true;
   };
-
-  if (signInGoogle) {
-    signInGoogle.onclick = () => {
-      console.log('Google login click');
-      if (!requireTerms()) return;
-      const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider).catch((err) => {
-        console.error('Google auth error', err);
-        if (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user') {
-          auth.signInWithRedirect(provider);
-          return;
-        }
-        alert(err.message);
-      });
-    };
-  }
-
-  if (signInEmail) {
-    signInEmail.onclick = () => {
-      if (!requireTerms()) return;
-      const email = emailInput?.value.trim();
-      const password = passwordInput?.value.trim();
-      if (!email || !password) {
-        return alert('Ingresa tu correo y contraseña para iniciar sesión.');
-      }
-      auth.signInWithEmailAndPassword(email, password).catch((err) => alert(err.message));
-    };
-  }
-
-  if (registerEmail) {
-    registerEmail.onclick = () => {
-      if (!requireTerms()) return;
-      const email = emailInput?.value.trim();
-      const password = passwordInput?.value.trim();
-      if (!email || !password) {
-        return alert('Ingresa tu correo y contraseña para crear la cuenta.');
-      }
-      auth.createUserWithEmailAndPassword(email, password)
-        .then(() => alert('Cuenta creada correctamente. Bienvenido.'))
-        .catch((err) => alert(err.message));
-    };
-  }
 
   const modalOverlay = document.getElementById('modalOverlay');
   const modalTitle = document.getElementById('modalTitle');
@@ -119,29 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
     authMessage.textContent = '';
     authMessage.className = 'auth-message';
   };
-
-  if (signInGoogle) {
-    signInGoogle.onclick = () => {
-      clearAuthMessage();
-      if (!requireTerms()) return;
-      if (!auth || !firebase) {
-        return showAuthMessage('No se pudo inicializar. Recarga la página e inténtalo de nuevo.', 'error');
-      }
-      const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider)
-        .then(() => {
-          showAuthMessage('Iniciando sesión con Google...', 'success');
-        })
-        .catch((err) => {
-          console.error('Google auth error', err);
-          if (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user') {
-            auth.signInWithRedirect(provider);
-            return;
-          }
-          showAuthMessage(`Lo sentimos, no puedes iniciar sesión con Google: ${err.message}`, 'error');
-        });
-    };
-  }
 
   if (signInEmail) {
     signInEmail.onclick = () => {
