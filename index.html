@@ -14,18 +14,13 @@
 <body>
   <div class="app-shell">
     <header class="topbar login-topbar">
-      <div class="brand-logo">
+      <div class="brand-logo login-brand">
         <img src="logo.svg" alt="YourManga" class="app-logo" />
         <div>
           <strong>YourManga</strong>
           <div class="app-version">v1.0.1</div>
         </div>
       </div>
-      <nav class="nav-bar simple-nav">
-        <a class="nav-link" href="home.html">Inicio</a>
-        <a class="nav-link" href="browse.html">Descubre</a>
-        <a class="nav-link" href="search.html">Buscar</a>
-      </nav>
     </header>
 
     <main>
@@ -38,7 +33,7 @@
           </div>
           <div class="hero-illustration"></div>
           <div class="auth-actions">
-            <button id="signInGoogle" class="primary google-btn">
+            <button type="button" id="signInGoogle" class="primary google-btn">
               <span class="button-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 11.1H12v2.8h5.35c-.23 1.2-.94 2.21-1.98 2.9v2.4h3.2c1.86-1.71 2.95-4.25 2.95-7.1 0-.57-.05-1.12-.16-1.65z"/><path fill="#34A853" d="M12 22c2.7 0 4.97-.9 6.63-2.45l-3.2-2.4c-.88.6-2.02.95-3.43.95-2.64 0-4.87-1.78-5.67-4.14H3.1v2.6C4.75 19.82 8.12 22 12 22z"/><path fill="#FBBC05" d="M6.33 13.96c-.2-.6-.32-1.25-.32-1.96s.12-1.36.32-1.96V7.44H3.10C2.36 8.80 1.90 10.35 1.90 12s.46 3.20 1.20 4.56l3.23-2.60z"/><path fill="#EA4335" d="M12 5.5c1.47 0 2.80.5 3.84 1.47l2.87-2.85C16.94 2.48 14.70 1.50 12 1.50 8.12 1.50 4.75 3.68 3.10 6.44l3.23 2.60C7.13 7.28 9.36 5.50 12 5.50z"/></svg></span>
               Iniciar con Google
             </button>
@@ -47,8 +42,8 @@
             <input id="emailInput" type="email" placeholder="Correo electrónico" />
             <input id="passwordInput" type="password" placeholder="Contraseña" />
             <div class="auth-actions email-actions">
-              <button id="signInEmail" class="primary">Iniciar con correo</button>
-              <button id="registerEmail" class="secondary">Crear cuenta</button>
+              <button type="button" id="signInEmail" class="primary">Iniciar con correo</button>
+              <button type="button" id="registerEmail" class="secondary">Crear cuenta</button>
             </div>
           </div>
           <label class="form-checkbox">

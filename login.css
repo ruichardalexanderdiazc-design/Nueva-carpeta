@@ -21,3 +21,36 @@
 .hero-illustration {
   min-height: 260px;
 }
+
+.auth-actions {
+  display: grid;
+  gap: 14px;
+}
+
+.email-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.auth-forms input {
+  border: 1px solid rgba(236, 72, 153, 0.28);
+  background: #fff5fb;
+}
+
+button.primary,
+button.secondary {
+  width: 100%;
+  min-height: 52px;
+}
+
+button.primary {
+  background: linear-gradient(135deg, #ec4899, #f472b6);
+  color: white;
+}
+
+button.secondary {
+  background: rgba(255, 255, 255, 0.9);
+  color: #7f3d6c;
+  border: 1px solid rgba(236, 72, 153, 0.25);
+}

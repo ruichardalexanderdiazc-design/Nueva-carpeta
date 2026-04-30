@@ -5,6 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch((err) => {
+    console.warn('No se pudo establecer persistencia local:', err.message);
+  });
+
+  auth.getRedirectResult().catch((err) => {
+    console.warn('Error en getRedirectResult:', err.message);
+  });
+
   const signInGoogle = document.getElementById('signInGoogle');
   const signInEmail = document.getElementById('signInEmail');
   const registerEmail = document.getElementById('registerEmail');
