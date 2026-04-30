@@ -1,0 +1,22 @@
+.auth-card {
+  max-width: 520px;
+  margin: 60px auto;
+  padding: 28px;
+  border-radius: 32px;
+}
+
+.auth-hero {
+  background: linear-gradient(180deg, rgba(255, 192, 231, 0.9), rgba(255, 237, 245, 0.92));
+}
+
+.hero-copy h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.hero-copy p {
+  color: #4d2f46;
+}
+
+.hero-illustration {
+  min-height: 260px;
+}

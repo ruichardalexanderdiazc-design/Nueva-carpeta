@@ -1,0 +1,14 @@
+.browse-toolbar input,
+.browse-toolbar select,
+.browse-toolbar button {
+  min-width: 150px;
+}
+
+.tag-chip {
+  background: rgba(255, 90, 155, 0.14);
+}
+
+.tag-chip.active {
+  background: rgba(255, 90, 155, 0.26);
+  border-color: rgba(255, 90, 155, 0.6);
+}

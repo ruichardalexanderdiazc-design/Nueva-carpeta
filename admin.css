@@ -1,0 +1,13 @@
+.admin-panel {
+  padding: 20px;
+}
+
+.admin-actions {
+  justify-content: space-between;
+}
+
+.admin-panel select,
+.admin-panel input,
+.admin-panel textarea {
+  background: rgba(255, 255, 255, 0.06);
+}
